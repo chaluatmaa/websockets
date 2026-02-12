@@ -14,7 +14,7 @@ export const matchRouter = Router()
 matchRouter.post('/', async(req, res) => {
     const parsed = createMatchSchema.safeParse(req.body)
     if(!parsed.success) {
-        return res.status(400).json({ error: "Invalid payload" , details: JSON.stringify(parsed.error)})
+        return res.status(400).json({ error: "Invalid payload" , details: (parsed.error.issues)})
     }
     const {startTime, endTime, homeScore, awayScore} = parsed.data;
     try {
@@ -37,7 +37,7 @@ const MAX_LIMIT = 100;
 matchRouter.get('/',async (req,res)=> {
     const parsed = listMatchesQuerySchema.safeParse(req.query);
     if (!parsed.success) {
-        return res.status(400).json({error: "Invalid query params", details: JSON.stringify(parsed.error)})
+        return res.status(400).json({error: "Invalid query params", details: (parsed.error.issues)})
     }
     const limit = Math.min(parsed.data.limit ?? 10, MAX_LIMIT);
     try {
