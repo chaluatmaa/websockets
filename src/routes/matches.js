@@ -1,5 +1,5 @@
 import { Router } from "express"
-import {createMatchSchema, listMatchesQuerySchemax} from "../validation/matches.js";
+import {createMatchSchema, listMatchesQuerySchema} from "../validation/matches.js";
 import {db} from "../db/db.js";
 import {getMatchStatus} from "../utils/match-status.js";
 import {matches} from "../db/schema.js";
@@ -29,13 +29,13 @@ matchRouter.post('/', async(req, res) => {
 
         res.status(201).json({data: event});
     }catch(e) {
-        res.status(500).json({ error: "Internal server error", details: JSON.stringify(e) })
+        res.status(500).json({ error: "Internal server error" })
     }
 })
 
 const MAX_LIMIT = 100;
 matchRouter.get('/',async (req,res)=> {
-    const parsed = listMatchesQuerySchemax.safeParse(req.query);
+    const parsed = listMatchesQuerySchema.safeParse(req.query);
     if (!parsed.success) {
         return res.status(400).json({error: "Invalid query params", details: JSON.stringify(parsed.error)})
     }
