@@ -1,4 +1,8 @@
-CREATE TYPE "public"."match_status" AS ENUM('scheduled', 'live', 'finished');--> statement-breakpoint
+DO $$ BEGIN
+    CREATE TYPE "public"."match_status" AS ENUM('scheduled', 'live', 'finished');
+EXCEPTION
+    WHEN duplicate_object THEN null;
+END $$;--> statement-breakpoint
 CREATE TABLE "commentary" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"match_id" integer NOT NULL,
