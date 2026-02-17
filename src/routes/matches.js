@@ -33,8 +33,7 @@ matchRouter.post('/', async(req, res) => {
 
         res.status(201).json({data: event});
     }catch(e) {
-        console.error("Error creating match:", e);
-        res.status(500).json({ error: "Internal server error", message: e.message || String(e) })
+        res.status(500).json({ error: "Internal server error"})
     }
 })
 
