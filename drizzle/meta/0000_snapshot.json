@@ -1,5 +1,5 @@
 {
-  "id": "5f4ce5ac-9449-4e04-a0c5-177d7c08cb50",
+  "id": "48672870-75f6-4867-97ca-23b4eb45aa0b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -34,7 +34,7 @@
         },
         "period": {
           "name": "period",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
